@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AAdmin
 
 TODO: Write a gem description
@@ -27,3 +28,7 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+=======
+a_admin
+=======
+>>>>>>> 1eb931269d99bd4a25f8c4be06c8f374bf7e3257
