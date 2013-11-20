@@ -1,0 +1,31 @@
+<div class="navbar" bs-navbar>
+  <div class="navbar-inner">
+    <a class="brand" href="/"><%= image_tag("brand/brand.png", :size => "24x24") %> - Admin</a>
+    <ul class="nav">
+      <li data-match-route="/about"><a href="/about">About</a></li>
+      <li data-match-route="/contact"><a href="/contact">Contact</a></li>
+      <li data-match-route="/info"><a href="/info">Info</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li data-match-route="/users"><a href="/users">Users</a></li>
+          <li data-match-route="/settings"><a href="/settings">Settings</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <session-toolbar></session-toolbar>
+
+  <div class="btn-group pull-right" ng-controller="themeCtrl">
+    <button class="btn">Current Theme: Euphoria</button>
+    <button class="btn dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="#" ng-click="changeTheme('default')">Default</a></li>
+      <li><a href="#" ng-click="changeTheme('euphoria')">Euphoria</a></li>
+    </ul>
+  </div>
+
+  </div>
+</div>

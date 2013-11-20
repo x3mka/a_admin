@@ -1,0 +1,27 @@
+<h1>Dialogs</h1>
+
+<div class="col-md-6">
+    <h2>Interaction Dialogs</h2>
+    <h3>Alerts</h3>
+    <div class="btn-group">
+        <button type="button" class="btn btn-info" ng-click="info('This is an info message!')">Info</button>
+        <button type="button" class="btn btn-danger" ng-click="error('This is an error!')">Error</button>
+        <button type="button" class="btn btn-warning" ng-click="warning('This is a warning!')">Warning</button>
+    </div>
+
+    <h3>Confirmation</h3>
+    <button type="button" class="btn btn-default" ng-click="confirm('Are you sure?')">Confirmation</button>
+    <span ng-show="confirmation_reply.length > 0">{{confirmation_reply}}</span>
+
+    <h3>Custom Form</h3>
+    <button type="button" class="btn btn-default" ng-click="openCustomFormDialog(resultFromCustomForm)">Custom Form</button>
+    <button type="button" class="btn btn-default" ng-click="openWizardFormDialog(resultFromCustomForm)">Wizard Form</button>
+    {{resultFromCustomForm}}
+</div>
+
+<div class="col-md-6">
+    <h2>State Dialogs</h2>
+    <h3>Custom Forms</h3>
+    <button type="button" class="btn btn-default" ui-sref="shell.home.dialogs.custom_form#dialog">Custom Form</button>
+    <button type="button" class="btn btn-default" ui-sref="shell.home.dialogs.wizard_form#dialog">Wizard Form</button>
+</div>

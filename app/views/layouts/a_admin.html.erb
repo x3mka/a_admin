@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="a_admin">
+<head>
+  <title>- Admin</title>
+  <link rel="shortcut icon" href="<%= asset_path("brand/favicon.ico") %>" type="image/x-icon" />
+  <%= stylesheet_link_tag "a_admin/themes/#{current_theme}/index", media: 'all' %>
+  <%= csrf_meta_tags %>
+  <%= yield :head %>
+</head>
+<body ng-controller="appCtrl">
+
+<div id="loading"><b>Loading...</b></div>
+<div ui-view></div>
+
+<%= yield %>
+
+<%= javascript_include_tag 'a_admin/index' %>
+<%= javascript_include_tag "a_admin/themes/#{current_theme}/index" %>
+
+</body>
+</html>

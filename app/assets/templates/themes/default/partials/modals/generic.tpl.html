@@ -1,0 +1,9 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" ng-show="dialogOpts.showHeader" ng-include="dialogOpts.headerTemplateUrl"></div>
+            <div class="modal-body" ng-show="dialogOpts.showBody" ng-include="dialogOpts.bodyTemplateUrl"></div>
+            <div class="modal-footer" ng-show="dialogOpts.showFooter" ng-include="dialogOpts.footerTemplateUrl"></div>
+        /div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

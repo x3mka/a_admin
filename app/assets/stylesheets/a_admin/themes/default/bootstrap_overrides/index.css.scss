@@ -1,0 +1,26 @@
+@import "variables.css.scss";
+@import "bootstrap";
+
+body {
+  padding-top: 0px;
+}
+
+.navbar .brand {
+  padding: 8px 20px 8px;
+}
+
+/* fixes ui-bootstrap modal behavior */
+.modal {
+  display: block;
+  height: 0;
+  overflow: visible;
+}
+
+
+.btn_login {
+  margin: 0px 2px 0px 2px;
+}
+
+.btn_register {
+  margin: 0px 2px 0px 2px;
+}

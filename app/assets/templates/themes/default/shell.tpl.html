@@ -1,0 +1,9 @@
+<header ui-view="viewHeader"></header>
+<div class="container">
+    <div class="row">
+        <div ui-view="viewSidebarLeft" style="min-height: 842px;" id="sidebar-left" class="pull-left col-lg-2 col-sm-1"></div>
+        <div ui-view="viewMain" id="content" class="col-lg-10 col-sm-11"></div>
+        <aside ui-view="viewSidebarRight"></aside>
+    </div>
+</div>
+<footer ui-view="viewFooter"></footer>

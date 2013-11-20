@@ -1,0 +1,60 @@
+<div class="navbar navbar-inverse" bs-navbar>
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#aa_nav">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/"><%= image_tag("brand/brand.png", :size => "24x24") %> - Admin</a>
+  </div>
+
+  <div class="collapse navbar-collapse" id="aa_nav">
+
+    <!-- main navigation -->
+    <ul class="nav navbar-nav">
+      <li data-match-route="/about"><a ui-sref="shell.home.about">About</a>
+      </li>
+      <li data-match-route="/contact"><a ui-sref="shell.home.contact">Contact</a>
+      </li>
+      <li data-match-route="/info"><a ui-sref="shell.home.info">Info</a>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li data-match-route="/users"><a href="/users">Users</a>
+          </li>
+          <li data-match-route="/settings"><a href="/settings">Settings</a>
+          </li>
+        </ul>
+      </li>
+      <li data-match-route="/dialogs"><a ui-sref="shell.home.dialogs">Dialogs</a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-left">
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+
+      <!-- theme widget -->
+      <li class="dropdown" ng-controller="themeCtrl">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Current Theme: Default <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#" ng-click="changeTheme('default')">Default</a>
+          </li>
+          <li><a href="#" ng-click="changeTheme('euphoria')">Euphoria</a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- session toolbar widget -->
+      <session-toolbar></session-toolbar>
+
+    </ul>
+
+
+
+  </div>
+
+</div>

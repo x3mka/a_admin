@@ -1,0 +1,7 @@
+<li>
+    <p class="navbar-text" ng-show="isAuthenticated()"><a href="#">{{currentUser.username}}</a></p>
+    <button class="btn navbar-btn" ng-click="logout()" ng-show="isAuthenticated()">Log out</button>
+
+    <button class="btn navbar-btn btn-login" ng-click="login()" ng-hide="isAuthenticated()">Log in</button>
+    <button class="btn navbar-btn btn-register" ng-click="register()" ng-hide="isAuthenticated()">Register</button>
+</li>

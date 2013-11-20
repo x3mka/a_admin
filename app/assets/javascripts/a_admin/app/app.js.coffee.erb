@@ -1,0 +1,75 @@
+'use strict'
+
+# Declare app level module which depends on filters, services, etc.
+angular.module('a_admin.resources', ['ngResource']);
+angular.module('a_admin.services', ['a_admin.services.session','a_admin.services.dialog']);
+angular.module('a_admin.directives', ['a_admin.directives.session']);
+angular.module('a_admin.filters', []);
+angular.module('a_admin.controllers', ['ngCookies','a_admin.controllers.login','a_admin.controllers.theme','a_admin.controllers.dialogs']);
+
+window.App = angular.module('a_admin', [
+    'ngRoute',
+    'ui.router',
+    'ngCookies',
+    '$strap.directives',
+    'ui.bootstrap',
+    'a_admin.config',
+    'a_admin.resources',
+    'a_admin.services',
+    'a_admin.directives',
+    'a_admin.filters',
+    'a_admin.controllers'
+])
+
+App.run(['$rootScope', 'sessionService', '$state', 'GENERAL_CONFIG', 'AUTH_CONFIG', ($rootScope, sessionService, $state, GENERAL_CONFIG, AUTH_CONFIG) ->
+
+    $rootScope.$on "$stateChangeStart", (event, toState, toParams, fromState, fromParams) ->
+        $rootScope.error = null
+        console.log("Navigating from " + fromState.name + "(" + fromState.url + ") to " + toState.name + "(" + toState.url + ") ...")
+        if sessionService.authorize(toState.data.access)
+            if toState.name == "shell.home.dialogs.custom_form#dialog"
+                toState.onEnter = ($stateParams, $state, dialogService) ->
+                    opts =
+                        title: toState.data.title
+                        templateUrl: toState.templateUrl
+                        controller: toState.controller
+                        resolve: toState.resolve
+                    d = dialogService.showFormDialog(opts)
+                    back_state = "shell.home.dialogs"
+                    d.result.then ((result) ->
+                        $state.transitionTo back_state
+                    ), () ->
+                        $state.transitionTo back_state
+        else
+            console.log "State authorization failed."
+            event.preventDefault()
+            if sessionService.isAuthenticated()
+                $state.transitionTo GENERAL_CONFIG.DEFAULT_STATE
+            else
+                $state.transitionTo AUTH_CONFIG.LOGIN_STATE
+
+    $rootScope.$on "$stateNotFound", (event, unfoundState, fromState, fromParams) ->
+         console.log "State not found: " + unfoundState.to
+
+])
+
+App.controller('appCtrl', ['$scope', '$state', ($scope, $state) ->
+#    $state.transitionTo('shell.main')
+])
+
+App.controller('infoCtrl', ['$scope', '$location', 'sessionService', ($scope, $location, sessionService) ->
+  $scope.user = sessionService.user()
+])
+
+App.controller('customFormCtrl', ['$scope', 'model', ($scope, model) ->
+#    $injector = angular.injector()
+#    model = $injector.get('model')
+
+    $scope.model = model
+    $scope.submit = () ->
+        $scope.$close({model: $scope.model})
+])
+
+#
+#App.controller('navCtrl', ['$scope', '$location', ($scope, $location) ->
+#])

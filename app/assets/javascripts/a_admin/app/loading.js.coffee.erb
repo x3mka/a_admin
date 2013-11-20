@@ -1,0 +1,25 @@
+#
+# Borrowed from: https://github.com/lavinjj/angularjs-spinner
+#
+App.config(["$httpProvider", ($httpProvider) ->
+    $http = undefined
+
+    interceptor = ["$q", "$injector", ($q, $injector) ->
+        success = (response) ->
+            # get $http via $injector because of circular dependency problem
+            $http = $http or $injector.get("$http")
+            $("#loading").hide()  if $http.pendingRequests.length < 1
+            response
+
+        error = (response) ->
+            # get $http via $injector because of circular dependency problem
+            $http = $http or $injector.get("$http")
+            $("#loading").hide()  if $http.pendingRequests.length < 1
+            $q.reject response
+
+        (promise) ->
+            $("#loading").show()
+            promise.then success, error
+    ]
+    $httpProvider.responseInterceptors.push interceptor
+])

@@ -1,0 +1,44 @@
+<h1>Login</h1>
+<form name="loginForm" ng-submit="create()">
+    <div class="alert alert-warning" ng-show="authReason">
+        {{authReason}}
+    </div>
+    <div class="alert alert-error" ng-show="authError">
+        {{authError}}
+    </div>
+    <div class="alert alert-info">Please enter your login details</div>
+    <div class="control-group">
+        <label class="control-label" for="email">Email</label>
+        <div class="controls">
+            <input type="email" id="email" name="email" placeholder="Email" ng-model="user.email" ng-minlength="2" required autofocus>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="password">Password</label>
+        <div class="controls">
+            <input type="password" id="password" name="password" placeholder="Password" ng-model="user.password" ng-minlength="2" password-validate required>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="checkbox" for="remember_me">
+            <input type="checkbox" id="remember_me" name="remember_me" ng-model="user.remember_me"> Remember Me
+        </label>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn" ng-click="login()" ng-disabled='loginForm.$invalid'>Login</button>
+            <button class="btn clear" ng-click="clearForm()">Clear</button>
+        </div>
+    </div>
+    <hr>
+    <tt>{{user}}</tt><br>
+    <hr>
+    <tt>loginForm.email.$valid = {{loginForm.email.$valid}}</tt><br>
+    <tt>loginForm.email.$error = {{loginForm.email.$error}}</tt><br>
+    <tt>loginForm.password.$valid = {{loginForm.password.$valid}}</tt><br>
+    <tt>loginForm.password.$error = {{loginForm.password.$error}}</tt><br>
+    <tt>loginForm.$valid = {{loginForm.$valid}}</tt><br>
+    <tt>loginForm.$error.required = {{!!loginForm.$error.required}}</tt><br>
+    <tt>loginForm.$error.minlength = {{!!loginForm.$error.minlength}}</tt><br>
+    <tt>loginForm.$error.maxlength = {{!!loginForm.$error.maxlength}}</tt><br>
+</form>​

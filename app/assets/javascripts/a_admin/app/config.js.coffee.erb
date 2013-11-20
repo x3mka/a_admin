@@ -1,0 +1,18 @@
+'use strict'
+
+config_module = angular.module('a_admin.config', [])
+
+config_data =
+    GENERAL_CONFIG:
+        APP_NAME: "Cool Admin"
+        APP_VERSION: "1.0.1"
+        DEFAULT_STATE: "shell.home.index"
+
+    AUTH_CONFIG:
+        SESSION_COOKIE_KEY: "a-admin-user"
+        LOGIN_STATE: "shell.home.login"
+        AFTER_LOGIN_STATE: "shell.home.info"
+
+
+angular.forEach config_data, (key, value) ->
+    config_module.constant value, key

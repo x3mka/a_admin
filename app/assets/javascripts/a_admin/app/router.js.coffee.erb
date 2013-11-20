@@ -1,0 +1,66 @@
+App.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
+
+    access = routingConfig.accessLevels
+
+    $stateProvider.state("shell",
+        url: "/"
+        abstract: true
+        views:
+            '@':
+                templateUrl: 'assets/themes/default/shell.tpl.html'
+            'viewHeader@shell':
+                templateUrl: 'assets/themes/default/partials/header.tpl.html'
+#            'viewSidebarLeft@shell':
+#                templateUrl: 'assets/themes/default/partials/sidebar.left.tpl.html'
+        data:
+            access: access.public
+    ).state("shell.home",
+        url: ""
+        abstract: true
+        views:
+            'viewMain@shell':
+                template: '<ui-view></ui-view>'
+    ).state("shell.home.index",
+        url: ""
+        templateUrl: '<%= asset_path "pages/index.tpl.html" %>'
+    ).state("shell.home.about",
+        url: "^/about"
+        templateUrl: '<%= asset_path "pages/about.tpl.html" %>'
+    ).state("shell.home.contact",
+        url: "^/contact"
+        templateUrl: '<%= asset_path "pages/contact.tpl.html" %>'
+    ).state("shell.home.dialogs",
+        url: "^/dialogs"
+        templateUrl: '<%= asset_path "pages/dialogs.tpl.html" %>'
+        controller: 'dialogsCtrl'
+    ).state("shell.home.dialogs.custom_form#dialog",
+        url: "/custom_form"
+        templateUrl: 'assets/themes/default/partials/modals/customForm.tpl.html'
+        controller: 'customFormCtrl'
+        resolve:
+            model: () ->
+                firstName: 'Demo'
+                lastName: 'User'
+        data:
+            title: "Custom Form in Modal Dialog (State)"
+    ).state("shell.home.info",
+        url: "^/info"
+        templateUrl: '<%= asset_path "pages/info.tpl.html" %>'
+        controller: 'infoCtrl'
+        data:
+            access: access.user
+    ).state("shell.home.login",
+        url: "^/login"
+        templateUrl: '<%= asset_path "themes/default/session/new.tpl.html" %>'
+        controller: 'loginCtrl'
+        data:
+            access: access.anonymous
+    ).state("404",
+        url: "/404"
+        templateUrl: '<%= asset_path "pages/404.tpl.html" %>'
+        data:
+            access: access.public
+    )
+
+    $urlRouterProvider.otherwise("/404");
+])
